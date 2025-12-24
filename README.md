@@ -1,1 +1,1 @@
-dataset generator: (SimRIS Channel Simulator for RIS-Aided Communication Systems)[https://ww2.mathworks.cn/matlabcentral/fileexchange/133422-simris-channel-simulator-for-ris-aided-communication-systems]
+dataset generator: [SimRIS Channel Simulator for RIS-Aided Communication Systems](https://ww2.mathworks.cn/matlabcentral/fileexchange/133422-simris-channel-simulator-for-ris-aided-communication-systems)
