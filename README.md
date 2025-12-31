@@ -6,3 +6,5 @@
 - 4 Receive Antenna for BS
 - 16 Transmit Antenna for each UE
 - 10000 channel realization
+
+checking out master branch for full simulation
