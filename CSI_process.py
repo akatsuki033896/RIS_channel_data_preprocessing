@@ -3,6 +3,7 @@ import scipy.io as sio
 from matplotlib import pyplot as plt
 import os
 
+
 def split_data(data, train_ratio):
     N = data.shape[2] # type: ignore
     idx = np.random.permutation(N)
@@ -31,7 +32,8 @@ def plot_IQ_Distribution(data):
     plt.title("IQ Distribution of RIS-MIMO Channel")
     plt.axis('equal')
     plt.grid(True)
-    plt.show()
+    plt.savefig("IQ_Distribution")
+    # plt.show()
 
 
 # normalization
@@ -55,7 +57,7 @@ def normalization(data_train, data_test):
 # 划分数据集给UE
 # IID
 # Non-IID: shuffle=False
-def sampling(H, client_num, shuffle=True, seed=0) -> list:
+def sampling(H, client_num, shuffle=True, seed=0):
     sample_sum = H.shape[0]
     
     if shuffle:
@@ -65,7 +67,6 @@ def sampling(H, client_num, shuffle=True, seed=0) -> list:
 
     # 样本数不能整除UE数 返回空list
     if sample_sum % client_num != 0:
-        print("Invalid sample sum\n")
         return []
     
     samples_per_client = sample_sum // client_num
@@ -76,33 +77,3 @@ def sampling(H, client_num, shuffle=True, seed=0) -> list:
         client_data.append(x_k)
     
     return client_data
-
-
-# if __name__ == '__main__':
-    # current_dir = os.path.dirname(os.path.abspath(__file__))
-    # # path = os.getcwd()
-    # # print(path)
-    # file_path = os.path.join(current_dir, "RIS_Channels_MIMO.mat")
-    # data = sio.loadmat(file_path)
-    # data = data['H'] # np.ndarray
-    # # print(data.shape)
-
-    # train_ratio = 0.8
-    # data_train, data_test = split_data(data, train_ratio)
-    # # plot_IQ_Distribution(data_train)
-
-    # data_train, data_test = normalization(data_train, data_test)
-    # # plot_IQ_Distribution(data_train)
-    # # plot_IQ_Distribution(data_test)
-
-    # H_real = data_train.real
-    # H_imag = data_train.imag
-    # H = np.stack([H_real, H_imag], axis=2) # 合并实部虚部
-    # # print(H.shape)
-    
-    # H = np.transpose(H, (3, 0, 1, 2)) # 把实例数移到一维
-    # print(H.shape) # (8000, 64, 4, 2)
-
-    # client_num = 10 # 10 个UE
-    # client_data = sampling(H, client_num=10)
-    # print(client_data)
